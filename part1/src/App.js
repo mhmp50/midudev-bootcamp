@@ -35,6 +35,8 @@ function App() {
       <Mensajeprops color='green' message='estamos trabajando' />
       <Mensajeprops color='yellow' message='en una apliacion' />
       <Mensajeprops color='red' message='de react js' />
+      <Mensajeprops color='pink' message='prueba commit de git' />
+
      
       </div>
     </div>
