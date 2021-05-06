@@ -7,3 +7,4 @@ const Mensajeprops = (props) => {
 }
 
 export default Mensajeprops
+
