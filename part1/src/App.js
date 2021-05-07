@@ -54,8 +54,3 @@ export default App;
 //(MENSAJEPROPS MESSAGE=.....) aqui lo que estmos haciendo es mandar ese texto a un modulo en otro archivo que lo que hace es transformarlo en un titulo tipo h2 y  mostrarnolo en pantalla.
 //NOTA: solo se puede importar un modulo por archivo, si no nos manda error.
 //NOTA: los componentes siempre deven usarce con su primera letra como mayuscula. esto es devido a que en el ejemplo de <Mensajeaparte /> los simbolos <> tambien son usados por las etiquetas HTML entonces is esta todo en minusculas <mensajeaparte /> react lo toma como una etiqueta HTML y no como un componente.
-
-
-
-
-
