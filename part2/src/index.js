@@ -110,24 +110,39 @@ ReactDOM.render(<App />, rootElemnt);
 1 el contador */
 const App = (props) => {
   
-  const [contadorValue, updateContador] = useState(1)        
+  const [contadorValue, updateContador] = useState(0)        
     
   console.log("render") /*aqui podemos ver que cada vez que hacemos click nos aparece en al consola un "render"
   asi podemos saber que cada vez que hacemos click el componente se reenderiza nuevamente*/
 
+  /*algo tambien importante de React es que podemos crear "funciones helper". Esto significa que dentro del componente
+  podemos crear funciones que neceistemos para resolver algun problemas aqui enseguida un ejemplo. */
+  const handleReset = () => {   /*creamos esta funcion para resetear el contador a cero, asi en en boton solo llamamos la funcion por lo que el codigo que das mas limpio. hayq ue tener en cuenta que debemos llamar la funcion mas no la ejecucion de esta funcion es decir en el evento onClick llamamos la funcion sin parentecis, asi: onClick={handleReset} */
+    updateContador(0)
+  }
+
+  /*vamos a indicar si el contador es impar o es par y que nos muestre el estado en la UI. una ves hecho esto
+  llamamos la evaluacion "mensajePar" en un parrafo aparte <p>{mensajePar}</p> */
+  const isEven = contadorValue % 2 ===0   //si contadorValue al dividirlo entre 2 el residuo es cero es par
+  const mensajePar = isEven ? "Es Par" : "Es Impar" //aqui hacemos una evaluacion, si isEven es verdad (isEven ?) entonces "es par" si no (:) "es impar"
+
   return (    
     <div>
       <p>el valor del contador es </p>
-      <h1>{contadorValue}</h1>            
+      <h1>{contadorValue}</h1>
+      <p>{mensajePar}</p>
       <button onClick={() => {              //creamos una funcion para llamar añadir un evento a nuestro compoente a travez de un "onClick" y que cada vez que le demos click aumente el contadorValue en 1.
         //updateContador(contadorValue + 1)   //existe otra forma de actualizar el estado, a updateContador tambien se le puede pasar una funcion por lo que:
-        updateContador(prevContador => {      //aqui creamos un funcion donde le apsamos como parametro el contador previo "preContador" y le decimos que al ejecutarlo no regrese este "prevContador" + 1. la ventaja de realizarzo de esta forma es que nos aseguramos de siempre tener el valor anterior osea "prevContador" y a este sumarle 1 por lo que el resultado sera el siguiente prevContador al que deberemos sumar 1 nuevamente cuando el componente se vuelva a reenderizar.
+        updateContador(prevContador => {      //aqui creamos un funcion donde le apsamos como parametro el contador previo "preContador" y le decimos que al ejecutarlo no regrese este "prevContador" + 1. la ventaja de realizarzo de esta forma es que nos aseguramos de siempre tener el valor anterior osea "prevContador" y a este sumarle 1 por lo que el resultado sera el siguiente prevContador al que deberemos sumar 1 nuevamente cuando el componente se vuelva a reenderizar. (tambien podriamos hacer la funcion aparte y pasarle aqui como parametro una funcion,"pero una funcion: onClick={funcion} mas NO la ejecucion de una funcion: onClick={funcion()} ---> esto esta mal, debe ir sin parentecis.") como se muestra en el boton de handleReset mas abajo. 
           return prevContador + 1;
         })
         }
       }
       >
         Incrementar
+      </button>
+      <button onClick={handleReset}>
+        resetear
       </button>
     </div>
   )
